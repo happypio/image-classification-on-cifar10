@@ -2,3 +2,11 @@
 #
 # Documentation for this file format can be found in "The Data Catalog"
 # Link: https://kedro.readthedocs.io/en/stable/data/data_catalog.html
+
+cifar_10_train_data:
+  type: pickle.PickleDataSet
+  filepath: data/02_intermediate/cifar_10_train_data.pickle
+
+cifar_10_test_data:
+  type: pickle.PickleDataSet
+  filepath: data/02_intermediate/cifar_10_test_data.pickle
