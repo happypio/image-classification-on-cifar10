@@ -1,7 +1,7 @@
 # Image Classification on CIFAR10
 
 ## Team 
-Piotr Piesiak 
+Piotr Piesiak, Witold Płecha, Maurycy Borkowski
 ## Description 
 Image classification on torchvision dataset CIFAR10. Trained model will classify image to one of 10 classes: 
 * airplane, automobile, bird, cat, deer, dog, frog, horse, ship, truck
