@@ -3,11 +3,8 @@ This is a boilerplate pipeline 'data_loader'
 generated using Kedro 0.18.6
 """
 import logging
-import ssl
 
-import icecream
 import torchvision
-from icecream import ic
 
 # ssl._create_default_https_context = ssl._create_unverified_context  # FIXME: ???
 
@@ -48,5 +45,7 @@ def download_data(
         root="./data/01_raw/",
         train=train,
         download=True,
-        transform=load_transforms(transform_params),
+        transform=load_transforms(
+            transform_params
+        ),  # lsdkjfh ksjdf hkjsdfkjdsfh skjfh skdfh skdjhfksjdf kjsdhfksjdh ksjd hkjsdf
     )
