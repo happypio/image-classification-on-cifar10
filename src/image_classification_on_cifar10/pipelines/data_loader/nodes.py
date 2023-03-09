@@ -14,7 +14,8 @@ import logging
 logger = logging.getLogger(__name__)
 
 
-def load_transforms(train_transform_params: dict[str]):
+def load_transforms(
+        train_transform_params     : dict[str]):
     # TODO:
     if "train" in train_transform_params:
         return torchvision.transforms.Compose(
