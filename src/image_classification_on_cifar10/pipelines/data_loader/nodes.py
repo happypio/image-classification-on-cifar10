@@ -5,6 +5,7 @@ generated using Kedro 0.18.6
 import logging
 import ssl
 
+import icecream
 import torchvision
 from icecream import ic
 

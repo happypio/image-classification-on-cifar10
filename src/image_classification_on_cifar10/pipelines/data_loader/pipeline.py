@@ -3,6 +3,7 @@ This is a boilerplate pipeline 'data_loader'
 generated using Kedro 0.18.6
 """
 
+import icecream
 from kedro.pipeline import Pipeline, node, pipeline
 
 from .nodes import download_data
