@@ -2,14 +2,14 @@
 This is a boilerplate pipeline 'data_loader'
 generated using Kedro 0.18.6
 """
-import torchvision
+import logging
 import ssl
 
+import torchvision
 from icecream import ic
 
 # ssl._create_default_https_context = ssl._create_unverified_context  # FIXME: ???
 
-import logging
 
 logger = logging.getLogger(__name__)
 
@@ -40,6 +40,7 @@ def download_data(
     train: bool, transform_params: dict
 ) -> torchvision.datasets.cifar.CIFAR10:
 
+    logger.debug("Hello")
     logger.debug(transform_params)
 
     return torchvision.datasets.CIFAR10(
