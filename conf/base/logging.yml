@@ -41,7 +41,7 @@ loggers:
     level: INFO
 
   image_classification_on_cifar10:
-    level: INFO
+    level: DEBUG
 
 root:
   handlers: [rich, info_file_handler, error_file_handler]
