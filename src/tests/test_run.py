@@ -26,7 +26,7 @@ def config_loader():
 @pytest.fixture
 def project_context(config_loader):
     return KedroContext(
-        package_name="image_classification_on_cifar10",
+        package_name="image_classification_with_vit",
         project_path=Path.cwd(),
         config_loader=config_loader,
         hook_manager=_create_hook_manager(),

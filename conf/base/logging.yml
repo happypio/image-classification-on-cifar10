@@ -40,8 +40,8 @@ loggers:
   kedro:
     level: INFO
 
-  image_classification_on_cifar10:
-    level: DEBUG
+  image_classification_with_vit:
+    level: INFO
 
 root:
   handlers: [rich, info_file_handler, error_file_handler]
