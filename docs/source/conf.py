@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 
-# image_classification_on_cifar10 documentation build
+# image_classification_with_vit documentation build
 # configuration file, created by sphinx-quickstart.
 #
 # This file is execfile()d with the current directory set to its
@@ -21,11 +21,11 @@ import re
 
 from kedro.framework.cli.utils import find_stylesheets
 
-from image_classification_on_cifar10 import __version__ as release
+from image_classification_with_vit import __version__ as release
 
 # -- Project information -----------------------------------------------------
 
-project = "image_classification_on_cifar10"
+project = "image_classification_with_vit"
 author = "Kedro"
 
 # The short X.Y version.
@@ -119,7 +119,7 @@ html_show_sourcelink = False
 # -- Options for HTMLHelp output ---------------------------------------------
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = "image_classification_on_cifar10doc"
+htmlhelp_basename = "image_classification_with_vitdoc"
 
 # -- Options for LaTeX output ------------------------------------------------
 
@@ -147,8 +147,8 @@ latex_elements = {
 latex_documents = [
     (
         master_doc,
-        "image_classification_on_cifar10.tex",
-        "image_classification_on_cifar10 Documentation",
+        "image_classification_with_vit.tex",
+        "image_classification_with_vit Documentation",
         "Kedro",
         "manual",
     )
@@ -161,8 +161,8 @@ latex_documents = [
 man_pages = [
     (
         master_doc,
-        "image_classification_on_cifar10",
-        "image_classification_on_cifar10 Documentation",
+        "image_classification_with_vit",
+        "image_classification_with_vit Documentation",
         [author],
         1,
     )
@@ -176,11 +176,11 @@ man_pages = [
 texinfo_documents = [
     (
         master_doc,
-        "image_classification_on_cifar10",
-        "image_classification_on_cifar10 Documentation",
+        "image_classification_with_vit",
+        "image_classification_with_vit Documentation",
         author,
-        "image_classification_on_cifar10",
-        "Project image_classification_on_cifar10 codebase.",
+        "image_classification_with_vit",
+        "Project image_classification_with_vit codebase.",
         "Data-Science",
     )
 ]

@@ -1,5 +1,5 @@
-"""Image Classification on CIFAR10 file for ensuring the package is executable
-as `image-classification-on-cifar10` and `python -m image_classification_on_cifar10`
+"""Image classification with ViT file for ensuring the package is executable
+as `image-classification-with-vit` and `python -m image_classification_with_vit`
 """
 import importlib
 from pathlib import Path

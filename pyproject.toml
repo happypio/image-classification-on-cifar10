@@ -1,7 +1,7 @@
 [tool.kedro]
-package_name = "image_classification_on_cifar10"
-project_name = "Image Classification on CIFAR10"
-kedro_init_version = "0.18.5"
+package_name = "image_classification_with_vit"
+project_name = "Image classification with ViT"
+kedro_init_version = "0.18.6"
 
 [tool.isort]
 profile = "black"
@@ -9,7 +9,7 @@ profile = "black"
 [tool.pytest.ini_options]
 addopts = """
 --cov-report term-missing \
---cov src/image_classification_on_cifar10 -ra"""
+--cov src/image_classification_with_vit -ra"""
 
 [tool.coverage.report]
 fail_under = 0
