@@ -12,7 +12,7 @@ This project is designed to classify images from the CIFAR-10 dataset. We fine-t
 
 
 The Vision Transformer (ViT) is basically BERT, but applied to images. It attains excellent results compared to state-of-the-art convolutional networks. In order to provide images to the model, each image is split into a sequence of fixed-size patches (typically of resolution 16x16 or 32x32), which are linearly embedded. One also adds a [CLS] token at the beginning of the sequence in order to classify images. Next, one adds absolute position embeddings and provides this sequence to the Transformer encoder.
-![Alt text](./img/Vit.png?raw=true "Title")
+![Alt text](./img/Vit.png?raw=true "ViT")
 * Paper: https://arxiv.org/abs/2010.11929
 * Official repo (in JAX): https://github.com/google-research/vision_transformer
 
@@ -62,13 +62,25 @@ To evaluate the model use below command:
 ```
 kedro run --pipeline=evaluate_model
 ```
-After evaluation the confusion matrix can be found in the [08_reporting](data/08_reporting) folder. We present here the results of testing our fine-tuned model:
-
-![Alt text](./data/08_reporting/confusion_matrix.png?raw=true "Title")
+After evaluation the confusion matrix can be found in the [08_reporting](data/08_reporting) folder.
 
 We uploaded fine-tuned model, so one can run this command without training the model.
 
-## Weights&Biases report
-Here you can find the report 
+## Summary
 
-sample image
+We used Weights & Biases to gather and visualize our experiments [here](https://api.wandb.ai/links/happypio/wu1loce5) you can find the report.
+
+As expected, too small weight decay led to overfitting, and too big learning rate made it harder to find the optimal weights. Our experiments showed, that the best combination is when the value of learning rate is: 0.00005 and the value of weight decay is: 0.03.
+
+![Alt text](./img/wandb_plots.png?raw=true "WandB plots")
+
+Our model utilize very well GPU (circa 90%)
+
+![Alt text](./img/wandb_gpu.png?raw=true "WandB plots")
+
+We trained later our model with these parameters with 10 epochs, getting the best validation score: XXX and test score: XXX
+
+We present below the confusion matrix of the best model:
+
+![Alt text](./data/08_reporting/confusion_matrix.png?raw=true "Confusion Matrix")
+
