@@ -160,3 +160,7 @@ venv.bak/
 
 # notebooks
 *.ipynb
+
+test-cifar-10
+
+!confusion_matrix.png
