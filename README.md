@@ -54,7 +54,7 @@ To train the model use below command:
 ```
 kedro run --pipeline=train_model
 ```
-We fine-tune pretrained model, so the number of training parameters is small. You can change them here [trainig_parameters](conf/base/parameters/train_model.yml). After trainig, the model will be saved into the [06_model](data/06_model) folder. Our fine-tuned model is uploaded on this repository ([06_model](data/06_model)) and ready to use.
+We fine-tune pretrained model, so the number of training parameters is small. You can change them here [trainig_parameters](conf/base/parameters/train_model.yml). After trainig, the model will be saved into the [06_model](data/06_model) folder. Our fine-tuned model is uploaded on this repository ([06_model](data/06_model)) and ready to use. You can change the device (cpu / cuda) in the [parameters](conf/base/parameters.yml) file.
 
 ## Evaluate the model
 
@@ -67,3 +67,8 @@ After evaluation the confusion matrix can be found in the [08_reporting](data/08
 ![Alt text](./data/08_reporting/confusion_matrix.png?raw=true "Title")
 
 We uploaded fine-tuned model, so one can run this command without training the model.
+
+## Weights&Biases report
+Here you can find the report 
+
+sample image

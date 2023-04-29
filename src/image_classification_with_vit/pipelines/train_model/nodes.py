@@ -15,13 +15,13 @@ def compute_metrics(eval_pred):
     predictions = np.argmax(predictions, axis=1)
     return dict(accuracy=accuracy_score(predictions, labels))
 
-def train_model(train_ds, val_ds, train_raw, learning_rate, num_train_epochs, weight_decay):
+def train_model(train_ds, val_ds, train_raw, learning_rate, num_train_epochs, weight_decay, device):
     id2label = {id:label for id, label in enumerate(train_raw.features['label'].names)}
     label2id = {label:id for id,label in id2label.items()}
     model = ViTForImageClassification.from_pretrained('google/vit-base-patch16-224-in21k',
                                                   num_labels=10,
                                                   id2label=id2label,
-                                                  label2id=label2id)
+                                                  label2id=label2id).to(device)
     processor = ViTImageProcessor.from_pretrained("google/vit-base-patch16-224-in21k")
     
     metric_name = "accuracy"

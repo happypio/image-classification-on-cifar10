@@ -16,7 +16,7 @@ def create_pipeline(**kwargs) -> Pipeline:
                  name="preprocess_test_node"),
 
             node(func=evaluate_model,
-                 inputs=["preprocessed_test_ds"],
+                 inputs=["preprocessed_test_ds", "params:device"],
                  outputs=None,
                  name="evaluate_model_node")
         ]

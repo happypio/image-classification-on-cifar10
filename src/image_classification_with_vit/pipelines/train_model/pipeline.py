@@ -28,7 +28,7 @@ def create_pipeline(**kwargs) -> Pipeline:
                      "params:learning_rate",
                      "params:num_train_epochs",
                      "params:weight_decay",
-                     
+                     "params:device"
                      ],
                  outputs=None,
                  name="train_model_node"),

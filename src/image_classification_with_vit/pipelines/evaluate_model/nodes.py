@@ -9,9 +9,9 @@ def collate_fn(examples):
     labels = torch.tensor([example["label"] for example in examples])
     return {"pixel_values": pixel_values, "labels": labels}
 
-def evaluate_model(test_ds):
+def evaluate_model(test_ds, device):
 
-    model = ViTForImageClassification.from_pretrained("./data/06_model/model")
+    model = ViTForImageClassification.from_pretrained("./data/06_model/model").to(device)
     processor = ViTImageProcessor.from_pretrained("google/vit-base-patch16-224-in21k")
     args = TrainingArguments(f"test-cifar-10", remove_unused_columns=False)
     
