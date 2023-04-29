@@ -78,7 +78,7 @@ Our model utilize very well GPU (circa 90%)
 
 ![Alt text](./img/wandb_gpu.png?raw=true "WandB plots")
 
-We trained later our model with these parameters with 10 epochs, getting the best validation score: XXX and test score: XXX
+We trained later our model with these parameters with 10 epochs, getting the best validation score: 98.2% and test score: 98.4%
 
 We present below the confusion matrix of the best model:
 
