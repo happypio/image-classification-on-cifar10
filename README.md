@@ -21,7 +21,7 @@ We will collect data from Hugging Face dataset cifar-10 [🤗 CIFAR-10](https://
 * Class labels:
 airplane, frog, bird, horse, automobile, deer, dog, cat, truck, ship
 
-## Instalation
+## Instalation and usage
 
 Dependencies are declared in `src/requirements.txt` 
 
@@ -29,6 +29,11 @@ To install them, run:
 
 ```
 pip install -r src/requirements.txt
+```
+
+To run all pipelines:
+```
+kedro run
 ```
 
 ## Download the dataset
