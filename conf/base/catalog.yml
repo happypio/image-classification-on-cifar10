@@ -1,4 +1,11 @@
-confusion_matrix:
-  type: matplotlib.MatplotlibWriter
-  filepath: data/09_tracking/confusion_matrix.png
-  versioned: true
+train_ds:
+  type: pickle.PickleDataSet
+  filepath: data/02_intermediate/train_ds.pickle
+
+val_ds:
+  type: pickle.PickleDataSet
+  filepath: data/02_intermediate/val_ds.pickle
+
+test_ds:
+  type: pickle.PickleDataSet
+  filepath: data/02_intermediate/test_ds.pickle

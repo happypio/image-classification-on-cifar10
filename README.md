@@ -1,23 +1,29 @@
-# Image classification with ViT
+# Image classification with ViT using CIFAR-10 Dataset
+
+## Team: 
+Piotr Piesiak, Witold Płecha, Maurycy Borkowski
 
 ## Overview
 
-This is your new Kedro project, which was generated using `Kedro 0.18.6`.
+This project is designed to classify images from the CIFAR-10 dataset. We fine-tuned pretrained Vision Transformer, which was created by Google Brain. To keep a well-organized project structure we used Kedro framework. We implemented pipelines to make the workflow easier.
 
-Take a look at the [Kedro documentation](https://kedro.readthedocs.io) to get started.
+## ViT by Google Brain
+* The description below was taken from the Transformers-Tutorial with ViT: https://github.com/NielsRogge/Transformers-Tutorials
 
-## Rules and guidelines
 
-In order to get the best out of the template:
+The Vision Transformer (ViT) is basically BERT, but applied to images. It attains excellent results compared to state-of-the-art convolutional networks. In order to provide images to the model, each image is split into a sequence of fixed-size patches (typically of resolution 16x16 or 32x32), which are linearly embedded. One also adds a [CLS] token at the beginning of the sequence in order to classify images. Next, one adds absolute position embeddings and provides this sequence to the Transformer encoder.
+![Alt text](./img/Vit.png?raw=true "Title")
+* Paper: https://arxiv.org/abs/2010.11929
+* Official repo (in JAX): https://github.com/google-research/vision_transformer
 
-* Don't remove any lines from the `.gitignore` file we provide
-* Make sure your results can be reproduced by following a [data engineering convention](https://kedro.readthedocs.io/en/stable/faq/faq.html#what-is-data-engineering-convention)
-* Don't commit data to your repository
-* Don't commit any credentials or your local configuration to your repository. Keep all your credentials and local configuration in `conf/local/`
+## Dataset overview
+We will collect data from Hugging Face dataset cifar-10 [🤗 CIFAR-10](https://huggingface.co/datasets/cifar10). This dataset consists of 60000 32x32 colour images in 10 classes, with 6000 images per class. There are 50000 training images and 10000 test images. 
+* Class labels:
+airplane, frog, bird, horse, automobile, deer, dog, cat, truck, ship
 
-## How to install dependencies
+## Instalation
 
-Declare any dependencies in `src/requirements.txt` for `pip` installation and `src/environment.yml` for `conda` installation.
+Dependencies are declared in `src/requirements.txt` 
 
 To install them, run:
 
@@ -25,98 +31,34 @@ To install them, run:
 pip install -r src/requirements.txt
 ```
 
-## How to run your Kedro pipeline
+## Download the dataset
 
-You can run your Kedro project with:
-
+The data can be downloaded from Hugging Face manually from: [🤗 CIFAR-10](https://huggingface.co/datasets/cifar10) (remember to put them into [02_intermediate](data/02_intermediate) folder). One can also do this using command:
 ```
-kedro run
+kedro run --pipeline=download_data
 ```
+The data will be downloaded into the [02_intermediate](data/02_intermediate) folder. One can change parameters in [download_params](conf/base/parameters/download_data.yml) file in order to modify train, validation and test sizes. The model performs very well on realtively small amount of data: 5000 samples in train and validation sets (4500 train, 500 val) and 2000 samples in test set. Such parameters will speed up the training process.
 
-## How to test your Kedro project
+## Preprocessing the dataset
 
-Have a look at the file `src/tests/test_run.py` for instructions on how to write your tests. You can run your tests as follows:
+We use HuggingFace Datasets' set_transform method, which performs data augmentation on-the-fly. This method transforms data only when given example is accessed. That's why there is not separete pipeline for preprocessing. The transform is applied during training and evaluation. One can find implementation of data augmentation here [preprocessing](src/image_classification_with_vit/pipelines/train_model/processing_nodes.py).
 
+## Train the model
+
+To train the model use below command:
 ```
-kedro test
+kedro run --pipeline=train_model
 ```
+We fine-tune pretrained model, so the number of training parameters is small. You can change them here [trainig_parameters](conf/base/parameters/train_model.yml). After trainig, the model will be saved into the [06_model](data/06_model) folder. Our fine-tuned model is uploaded on this repository ([06_model](data/06_model)) and ready to use.
 
-To configure the coverage threshold, go to the `.coveragerc` file.
+## Evaluate the model
 
-## Project dependencies
-
-To generate or update the dependency requirements for your project:
-
+To evaluate the model use below command:
 ```
-kedro build-reqs
+kedro run --pipeline=evaluate_model
 ```
+After evaluation the confusion matrix can be found in the [08_reporting](data/08_reporting) folder. We present here the results of testing our fine-tuned model:
 
-This will `pip-compile` the contents of `src/requirements.txt` into a new file `src/requirements.lock`. You can see the output of the resolution by opening `src/requirements.lock`.
+![Alt text](./data/08_reporting/confusion_matrix.png?raw=true "Title")
 
-After this, if you'd like to update your project requirements, please update `src/requirements.txt` and re-run `kedro build-reqs`.
-
-[Further information about project dependencies](https://kedro.readthedocs.io/en/stable/kedro_project_setup/dependencies.html#project-specific-dependencies)
-
-## How to work with Kedro and notebooks
-
-> Note: Using `kedro jupyter` or `kedro ipython` to run your notebook provides these variables in scope: `context`, `catalog`, and `startup_error`.
->
-> Jupyter, JupyterLab, and IPython are already included in the project requirements by default, so once you have run `pip install -r src/requirements.txt` you will not need to take any extra steps before you use them.
-
-### Jupyter
-To use Jupyter notebooks in your Kedro project, you need to install Jupyter:
-
-```
-pip install jupyter
-```
-
-After installing Jupyter, you can start a local notebook server:
-
-```
-kedro jupyter notebook
-```
-
-### JupyterLab
-To use JupyterLab, you need to install it:
-
-```
-pip install jupyterlab
-```
-
-You can also start JupyterLab:
-
-```
-kedro jupyter lab
-```
-
-### IPython
-And if you want to run an IPython session:
-
-```
-kedro ipython
-```
-
-### How to convert notebook cells to nodes in a Kedro project
-You can move notebook code over into a Kedro project structure using a mixture of [cell tagging](https://jupyter-notebook.readthedocs.io/en/stable/changelog.html#release-5-0-0) and Kedro CLI commands.
-
-By adding the `node` tag to a cell and running the command below, the cell's source code will be copied over to a Python file within `src/<package_name>/nodes/`:
-
-```
-kedro jupyter convert <filepath_to_my_notebook>
-```
-> *Note:* The name of the Python file matches the name of the original notebook.
-
-Alternatively, you may want to transform all your notebooks in one go. Run the following command to convert all notebook files found in the project root directory and under any of its sub-folders:
-
-```
-kedro jupyter convert --all
-```
-
-### How to ignore notebook output cells in `git`
-To automatically strip out all output cell contents before committing to `git`, you can run `kedro activate-nbstripout`. This will add a hook in `.git/config` which will run `nbstripout` before anything is committed to `git`.
-
-> *Note:* Your output cells will be retained locally.
-
-## Package your Kedro project
-
-[Further information about building project documentation and packaging your project](https://kedro.readthedocs.io/en/stable/tutorial/package_a_project.html)
+We uploaded fine-tuned model, so one can run this command without training the model.
